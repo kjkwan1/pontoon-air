@@ -1,0 +1,27 @@
+{
+  "name": "aqi",
+  "version": "1.0.0",
+  "description": "Track air quality index",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "webpack --mode production",
+    "dev": "webpack serve --open --mode development"
+  },
+  "author": "Kevin Kwan",
+  "license": "ISC",
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "css-loader": "^6.11.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.0",
+    "sass": "^1.72.0",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  }
+}

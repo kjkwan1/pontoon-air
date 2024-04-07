@@ -1,0 +1,28 @@
+@import '/src/styles/variables/variables';
+@import '/src/styles/base/typography';
+
+.header-main {
+    letter-spacing: -0.1rem;
+    margin: 2rem;
+    margin-top: 1.5rem;
+    color: $color-white;
+    text-align: center;
+
+    &--main {
+        font-size: $font-huge;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-1rem);
+        margin-bottom: 0.5rem;
+
+        svg {
+            margin-right: 1rem;
+        }
+    }
+
+    &--sub {
+        font-size: 1.6rem;
+        font-weight: 200;
+    }
+}

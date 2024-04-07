@@ -1,0 +1,60 @@
+$color-white: #e1dada;
+$color-green: #abd8b6;
+$color-light-blue: #adcde9;
+$color-steel-blue: #4682B4;
+$color-midnight: #1C1E2F;
+$color-magenta: #7A5971;
+
+$color-light-shade: #F9FAFB;
+$color-light-accent: #f5f5f5;
+$color-main: #ECAB66;
+$color-dark-accent: #E79F81;
+$color-dark-shade: #9F5438;
+
+$color-grey: #939393;
+$color-grey-light: #e7e7e7;
+$color-grey-lightest: #cfcfcf;
+
+// Font
+$font-family: 'Kanit', 'sans-serif';
+$base-font-size: 62.5%;
+
+$section-header-main: 10rem;
+$section-header-main-weight: 700;
+$section-header-main-height: 10rem;
+
+$section-header-sub: 2.4rem;
+$section-header-sub-height: 4.5rem;
+
+// Header
+$header-main-size: 7rem;
+$header-main-weight: 300;
+$header-main-letter-spacing: 0.6rem;
+$header-height: 8rem;
+
+// Shadow
+$heading-shadow: 0px 15px 8px rgba(0,0,0,0.1);
+
+$heading-shadow-hover: 0px 30px 10px rgba(0,0,0,0.1),
+                20px 40px 10px rgba(0,0,0,0.05),
+                -5px 10px 10px rgba(0,0,0,0.05);
+
+$box-shadow-light: rgba(17, 12, 46, 0.15) 0px 12px 25px 0px;
+$box-shadow-light-hover: rgba(17, 12, 46, 0.15) 0px 18px 35px 0px;
+// Border
+
+// Margins
+
+// Paddings
+
+// Misc
+
+$page-padding: 0rem 4rem;
+
+// health risk
+$hr-good: #4CAF50;
+$hr-moderate: #FFC107;
+$hr-unhealthy-at-risk: #FF9800;
+$hr-unhealthy: #F44336;
+$hr-very-unheahtly: #D32F2F;
+$hr-hazardous: #B71C1C;

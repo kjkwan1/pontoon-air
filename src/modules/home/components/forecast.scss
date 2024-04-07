@@ -1,0 +1,50 @@
+@import '/src/styles/variables/variables';
+@import '/src/styles/base/typography';
+
+.forecast {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    margin: 1rem 2rem;
+    font-size: $font-small;
+
+    &__desc {
+        display: flex;
+        justify-content: space-evenly;
+        color: $color-white;
+        height: 3rem;
+        align-items: center;
+        background-color: $color-steel-blue;
+    }
+
+    &__cell {
+        text-align: center;
+        width: 100%;
+        border-bottom: 1px solid $color-steel-blue;
+        margin: 2rem 0;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-evenly;
+        color: $color-white;
+        align-items: center;
+        height: 3rem;
+
+        &--day {
+
+        }
+
+        &--avg {
+
+        }
+
+        &--max {
+
+        }
+
+        &--min {
+
+        }
+    }
+}

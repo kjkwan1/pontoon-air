@@ -1,0 +1,57 @@
+// Font
+$font-family: 'Kanit', 'sans-serif';
+$base-font-size: 62.5%; // 1 rem = 10px
+
+$font-huge: 2rem;
+$font-large: 1.6rem;
+$font-medium: 1.4rem;
+$font-small: 1.2rem;
+$font-tiny: 1.05rem;
+
+.text-good {
+    color: $color-steel-blue;
+}
+
+.text-moderate {
+    color: $hr-moderate;
+}
+
+.text-unhealthy-at-risk {
+    color: $hr-unhealthy-at-risk;
+}
+
+.text-unhealthy {
+    color: $hr-unhealthy;
+}
+
+.text-very-unhealthy {
+    color: $hr-very-unheahtly;
+}
+
+.text-hazardous {
+    color: $hr-hazardous;
+}
+
+.good {
+    background-color: $color-steel-blue;
+}
+
+.moderate {
+    background-color: $hr-moderate;
+}
+
+.unhealthy-at-risk {
+    background-color: $hr-unhealthy-at-risk;
+}
+
+.unhealthy {
+    background-color: $hr-unhealthy;
+}
+
+.very-unhealthy {
+    background-color: $hr-very-unheahtly;
+}
+
+.hazardous {
+    background-color: $hr-hazardous;
+}

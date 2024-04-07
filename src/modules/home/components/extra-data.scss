@@ -1,0 +1,26 @@
+@import '/src/styles/variables/variables';
+@import '/src/styles/base/typography';
+
+.extra-data {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    list-style: none;
+    margin: 2rem;
+    grid-gap: 2rem 1.5rem;
+
+    &__item {
+        padding: 1rem;
+        text-align: center;
+        background-color: $color-white;
+
+        &--key {
+            font-size: $font-large;
+            font-weight: 700;
+        }
+
+        &--value {
+            font-size: $font-tiny;
+            font-weight: 200;
+        }
+    }
+}

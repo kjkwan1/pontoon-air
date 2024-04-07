@@ -1,0 +1,28 @@
+@import '/src/styles/variables/variables';
+@import '/src/styles/base/typography';
+
+.contact {
+    height: 25rem;
+    background-color: $color-midnight;
+    padding: 2rem;
+    margin-top: -3rem;
+
+    &__table {
+        width: 100%;
+        font-size: $font-large;
+        font-weight: 100;
+
+        &--icon {
+            margin-right: 0.5rem;
+        }
+
+        &--title {
+            display: flex;
+            align-items: center;
+        }
+
+        &--data {
+            text-align: right;
+        }
+    }
+}

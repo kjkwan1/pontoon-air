@@ -1,0 +1,32 @@
+.appear {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(1rem);
+}
+
+.appear.inview {
+    opacity: 1;
+    transform: none;
+}
+
+.appear-up {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(1rem);
+}
+
+.appear-up.inview {
+    opacity: 1;
+    transform: none;
+}
+
+.appear-down {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(-1rem);
+}
+
+.appear-down.inview {
+    opacity: 1;
+    transform: none;
+}
