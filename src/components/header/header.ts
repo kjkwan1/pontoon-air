@@ -14,6 +14,7 @@ export class Header extends BaseComponent {
         const container = this.getContainer();
         const header = new ElementBuilder('header')
             .class('header')
+            .elementId('header')
             .appendHTML(`
                 <nav class="nav" id="nav">
                     <a class="nav__logo">

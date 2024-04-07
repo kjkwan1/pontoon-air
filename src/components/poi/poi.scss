@@ -3,6 +3,8 @@
 
 .poi {
     width: 100%;
+    max-height: 30rem;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -10,6 +12,25 @@
     word-spacing: -0.08rem;
     font-size: $font-tiny;
     padding: 0 2rem;
+    margin: 1rem 0;
+
+    &__buttons {
+        width: 100%;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: flex-end;
+        border: none;
+
+        &--sort {
+            color: $color-white;
+            width: 14rem;
+            font-size: 1.15rem;
+            padding: 0.4rem;
+            background-color: $color-midnight;
+            border: none;
+            cursor: pointer;
+        }
+    }
 
     &__item {
         color: $color-midnight;

@@ -49,3 +49,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     contactHeading.render();
     contact.render();
 });
+
+var previousPos = window.scrollY;
+
+window.onscroll = () => {
+    const currentScrollPos = window.scrollY;
+    const header = document.getElementById('header');
+    if (!header) {
+        return;
+    }
+
+    if (currentScrollPos > previousPos && currentScrollPos > 670) {
+        header.classList.remove('fixed');
+        header.classList.add('hidden');
+    } else {
+        header.classList.add('fixed');
+        header.classList.remove('hidden');
+    }
+    previousPos = currentScrollPos;
+}

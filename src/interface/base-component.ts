@@ -18,8 +18,6 @@ export class BaseComponent extends Component {
             for (let entry of entries) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('inview');
-                } else {
-                    entry.target.classList.remove('inview');
                 }
             }
         });
