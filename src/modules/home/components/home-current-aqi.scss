@@ -139,15 +139,23 @@
         color: $color-midnight;
 
         &--item {
+            display: flex;
+            align-items: center;
             width: 100%;
         }
 
         &--bar {
-            display: block;
+            display: flex;
+            width: 50%;
+            height: 0.5rem;
+            border-radius: 12rem;
+            margin-left: 1rem;
         }
 
         &--msg {
+            color: $color-white;
             display: block;
+            width: 50%;
         }
     }
 }

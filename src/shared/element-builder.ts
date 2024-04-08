@@ -35,7 +35,12 @@ export class ElementBuilder implements IElementBuilder {
     }
 
     public appendHTML(html: string): ElementBuilder {
-        this.element.innerHTML += html;
+        this.element.insertAdjacentHTML('beforeend', html);
+        return this;
+    }
+
+    public attribute(attribute: string, value: string): ElementBuilder {
+        this.element.setAttribute(attribute, value);
         return this;
     }
 

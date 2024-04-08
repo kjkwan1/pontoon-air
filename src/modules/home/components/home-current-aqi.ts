@@ -122,26 +122,25 @@ export class HomeCurrentAQI extends BaseComponent {
             `)
             .build();
 
-        // const legend = new ElementBuilder('div')
-        //     .class('aqi__legend')
-        //     .build();
+        const legend = new ElementBuilder('div')
+            .class('aqi__legend')
+            .build();
 
-        // for (let key of Object.keys(legendData)) {
-        //     const data = legendData[key];
-        //     const legendItem = new ElementBuilder('div')
-        //         .class('aqi__legend--item')
-        //         .appendHTML(`
-        //             <span class="aqi__legend--bar ${data.status}">
-        //                 <span class="aqi__legend--msg">${data.msg}</span>
-        //             </span>
-        //         `)
-        //         .build();
-        //     legend.append(legendItem)
-        // }
-        // this.applyScrollFadeIn(legend);
+        for (let key of Object.keys(legendData)) {
+            const data = legendData[key];
+            const legendItem = new ElementBuilder('div')
+                .class('aqi__legend--item')
+                .appendHTML(`
+                    <span class="aqi__legend--msg">${data.msg}</span>
+                    <span class="aqi__legend--bar ${data.status}"></span>
+                `)
+                .build();
+            legend.append(legendItem)
+        }
+        this.applyScrollFadeIn(legend);
         this.applyScrollFadeIn(element);
         container.append(element);
-        // container.append(legend);
+        container.append(legend);
     }
 
     private buildPollutionMeter(container: Element) {

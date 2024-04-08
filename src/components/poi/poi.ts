@@ -5,6 +5,10 @@ import { getColor } from "../../shared/color-picker";
 import { ElementBuilder } from "../../shared/element-builder";
 import './poi.scss';
 
+const DEFAULT_SORT = (a: AQICNData, b: AQICNData) => {
+    return a.city.name.localeCompare(b.city.name);
+}
+
 export class Poi extends BaseComponent {
     private poi: Record<string, string> = {
         NEW_YORK: 'nyc',
@@ -17,6 +21,8 @@ export class Poi extends BaseComponent {
     }
 
     private feeds: AQICNData[] = [];
+    private ulRef!: Element;
+    private currentSort: (a: AQICNData, b: AQICNData) => number = DEFAULT_SORT;
 
     public render(): void {
         try {
@@ -31,9 +37,16 @@ export class Poi extends BaseComponent {
             const sortDropdown = new ElementBuilder('select')
                 .class('poi__buttons--sort')
                 .build();
+            const search = new ElementBuilder('input')
+                .attribute('placeholder', 'Search city...')
+                .elementId('poi-search')
+                .class('poi__search')
+                .build();
             // const filterDropdown = new ElementBuilder('select')
             //     .class('poi__filter')
             //     .build();
+
+            this.ulRef = ul;
 
             for (let entry of Object.entries(SORT_OPTIONS)) {
                 const option = new ElementBuilder('option')
@@ -44,32 +57,32 @@ export class Poi extends BaseComponent {
                 option.setAttribute('value', entry[1]);
                 sortDropdown.append(option);
             }
-
-            let sort = (a: AQICNData, b: AQICNData) => {
-                return a.city.name.localeCompare(b.city.name);
-            }
             const ref = this;
             sortDropdown.addEventListener('change', function(this: { value: string }) {
                 switch(this.value) {
                     case SORT_OPTIONS.AQI_ASC:
-                        sort = (a: AQICNData, b: AQICNData) => {
-                            return a.aqi > b.aqi ? 1 : -1;
+                        ref.currentSort = (a: AQICNData, b: AQICNData) => {
+                            return b.aqi < a.aqi ? 1 : -1;
                         }
                         break;
                     case SORT_OPTIONS.AQI_DESC:
-                        sort = (a: AQICNData, b: AQICNData) => {
+                        ref.currentSort = (a: AQICNData, b: AQICNData) => {
                             return b.aqi > a.aqi ? 1 : -1;
                         }
                         break;
                     case SORT_OPTIONS.NAME_DESC:
-                        sort = (a: AQICNData, b: AQICNData) => {
+                        ref.currentSort = (a: AQICNData, b: AQICNData) => {
                             return b.city.name.localeCompare(a.city.name);
                         }
                         break;
                     default:
                         break;
                 }
-                ref.buildList(ul, sort);
+                ref.buildList(true);
+            });
+
+            search.addEventListener('change', function(this: { value: any }) {
+                ref.search(this.value);
             });
 
             buttons.append(sortDropdown);
@@ -86,9 +99,15 @@ export class Poi extends BaseComponent {
                 .then((results) => {
                     this.feeds = results;
                 })
-                .then(() => this.buildList(ul, sort))
+                .then(() => this.buildList(true))
                 .finally(() => {
-                    container.append(ul);
+                    const searchContaier = new ElementBuilder('div')
+                        .class('poi__search-container')
+                        .build();
+
+                    searchContaier.append(search);
+                    container.append(this.ulRef);
+                    container.append(searchContaier);
                     this.resolve(null);
                 })
         } catch(e) {
@@ -96,25 +115,38 @@ export class Poi extends BaseComponent {
         }
     }
 
-    private buildList(ul: Element, sort: (a: AQICNData, b: AQICNData) => number): void {
-        ul.innerHTML = '';
-        console.log(this.feeds);
+    private async search(input: string): Promise<void> {
+        let feeds = [...this.feeds];
+        try {
+            const feed = await getFeed(input);
+            feeds = [feed, ...feeds];
+        } catch(e) {
+            console.error(e);
+            const search = document.getElementById('poi-search');
+            search?.classList.add('warn')
+            setTimeout(() => {
+                search?.classList.remove('warn');
+            }, 1500);
+            return;
+        }
+        this.feeds = feeds;
+        this.buildList();
+    }
+
+    private buildList(shouldSort = false): void {
+        this.ulRef.innerHTML = '';
+        this.ulRef.scrollTo({ top: 0 });
         let list = [...this.feeds];
-        list = list.sort(sort);
-        console.log(list);
+        list = shouldSort ? list.sort(this.currentSort) : list;
         for (let result of list) {
             const li = new ElementBuilder('li')
                 .class('poi__item appear')
                 .classList(getColor(result.aqi))
-                .appendHTML(`
-                    <h2 className="poi__item--city">${result.city.name}</h2>
-                `)
-                .appendHTML(`
-                    <h2 classNAme="poi__item--aq">${result.aqi}</h2>
-                `)
+                .appendHTML(`<h2 class="poi__item--city">${result.city.name}</h2>`)
+                .appendHTML(`<h2 class="poi__item--aq">${result.aqi}</h2>`)
                 .build();
             this.applyScrollFadeIn(li);
-            ul.append(li);
+            this.ulRef.append(li);
         }
     }
 }

@@ -11,5 +11,9 @@ enum REQUEST_PARAMS {
 export async function getFeed(state: string): Promise<AQICNData> {
     const requestUrl = `${base_url}/${REQUEST_PARAMS.FEED}/${state}/?${REQUEST_PARAMS.TOKEN}=${key}`;
     const response = await fetch(requestUrl);
-    return response.json().then((response: AQICNResponse) => response.data);
+    const responseJson: AQICNResponse = await response.json();
+    if (responseJson.status !== 'ok') {
+        throw responseJson;
+    }
+    return responseJson.data;
 }
